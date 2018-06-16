@@ -1,9 +1,7 @@
-import './App.css'
-
 import React from 'react'
-import Chart from './components/Chart/Chart'
+import Chart from 'containers/chart'
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
       <div className='container pt-5'>
@@ -16,5 +14,3 @@ class App extends React.Component {
     )
   }
 }
-
-export default App

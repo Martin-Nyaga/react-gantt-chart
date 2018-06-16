@@ -1,4 +1,4 @@
-import './Item.css'
+import '../styles/item.css'
 import 'jquery-ui/themes/base/core.css'
 import 'jquery-ui/themes/base/resizable.css'
 
@@ -9,11 +9,11 @@ import 'jquery-ui/ui/widgets/draggable'
 import 'jquery-ui/ui/widgets/sortable'
 
 export default class Item extends React.Component {
-  get xStep () { return 50 }
+  get gridSize () { return 50 }
   get $el () { return $(`.gantt-item#item-${this.props.id}`) }
 
   handleResize (ui) {
-    let newDuration = ui.size.width / this.xStep
+    let newDuration = ui.size.width / this.gridSize
     this.props.updateItem(
       this.props.id,
       { duration: newDuration }
@@ -21,7 +21,7 @@ export default class Item extends React.Component {
   }
 
   handleDrag (ui) {
-    let newStart = this.$el.left / this.xStep
+    let newStart = ui.position.left / this.gridSize
     this.props.updateItem(
       this.props.id,
       { start: newStart }
@@ -31,13 +31,14 @@ export default class Item extends React.Component {
   componentDidMount () {
     this.$el.resizable({
       handles: 'e, w',
-      grid: [this.xStep],
+      grid: [this.gridSize, 0],
+      minWidth: this.gridSize,
       stop: (e, ui) => this.handleResize(ui)
     })
 
     this.$el.draggable({
       axis: 'x',
-      grid: [this.xStep],
+      grid: [this.gridSize, 0],
       stop: (e, ui) => this.handleDrag(ui)
     })
   }
@@ -48,8 +49,8 @@ export default class Item extends React.Component {
   }
 
   getStyles () {
-    let width = (this.props.duration * this.xStep) + "px"
-    let left = (this.props.start * this.xStep) + "px"
+    let width = (this.props.duration * this.gridSize) + "px"
+    let left = (this.props.start * this.gridSize) + "px"
 
     return {
       width: width,
@@ -59,7 +60,7 @@ export default class Item extends React.Component {
 
   render () {
     return (
-      <div className='gantt-item-container' data-item-id={this.props.id}>
+      <div className='gantt-item-container'>
         <div className='gantt-item-sort-handle'>
           <span className='center-text'>
             {this.props.position + 1}
