@@ -59,10 +59,8 @@ export default class TaskBlock extends React.Component {
     return (
       <tr>
         <td className='gantt-task-container'>
-          <div id={'task-' + this.props.id} className='gantt-task bg-primary text-white rounded'
+          <div id={'task-' + this.props.id} className='gantt-task bg-primary text-white'
                 style={this.getStyles()}>
-            <span className='resize-handle left'></span>
-            <span className='resize-handle right'></span>
           </div>
         </td>
       </tr>

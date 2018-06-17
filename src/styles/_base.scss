@@ -1,7 +1,7 @@
-// colors
+// variables
 $grey-1: #777;
 $grey-2: #dee2e6;
-$grey-3: whitesmoke;
+$grey-3: #f5f5fa;
 
 $small-table-row-height: 35px;
 
@@ -13,6 +13,11 @@ $small-table-row-height: 35px;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+// top level elements
+html, body {
+  font-size: 12px;
 }
 
 .table {

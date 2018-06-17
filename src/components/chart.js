@@ -1,10 +1,11 @@
 import 'styles/chart.css'
 
 import React from 'react'
-
 import TaskBlock from './taskBlock'
 
 export default class Chart extends React.Component {
+  get colPixelWidth () { return 50 }
+
   // componentDidMount () {
   //   this.initSortable()
   // }
@@ -37,6 +38,17 @@ export default class Chart extends React.Component {
     this.sortableElement.sortable('destroy')
   }
 
+  totalDuration () {
+    let end = 20
+
+    this.props.tasks.forEach(task => {
+      let taskEnd = Number(task.start) + Number(task.duration)
+      if (taskEnd > end) end = taskEnd
+    })
+
+    return end
+  }
+
   renderTask (task) {
     return (
       <TaskBlock key={task.id}
@@ -45,10 +57,32 @@ export default class Chart extends React.Component {
     )
   }
 
+  renderBackgroundColumns () {
+    let columns = Array.from(
+      { length: this.totalDuration() },
+      (x, i) => i
+    )
+
+    return columns.map((_, i) => (
+      <div key={i} className='column border-right'
+        style={{
+          width: this.colPixelWidth + 'px'
+        }}>
+        <span className='small text-muted duration-title align-middle'>
+          Week {i + 1}
+        </span>
+      </div>
+    ))
+  }
+
   render () {
     return (
       <div className='chart-container'>
-        <table className='table table-sm chart'>
+        <div className='background'>
+          {this.renderBackgroundColumns()}
+        </div>
+        <table className='table table-sm chart'
+          style={{ width: (this.totalDuration() * 50) + "px" }}>
           <thead>
             <tr>
               <th>
