@@ -1,24 +1,24 @@
 // Action Types
 
-export const ADD_ITEM = 'ADD_ITEM'
-export const UPDATE_ITEM = 'UPDATE_ITEM'
+export const ADD_TASK = 'ADD_TASK'
+export const UPDATE_TASK = 'UPDATE_TASK'
 
 // Action Creators
 
-export function addItem () {
+export function addTask () {
   return {
-    type: ADD_ITEM,
+    type: ADD_TASK,
     payload: {
       start: 0,
       duration: 4,
-      description: ''
+      description: 'Task Description'
     }
   }
 }
 
-export function updateItem (id, props) {
+export function updateTask (id, props) {
   return {
-    type: UPDATE_ITEM,
+    type: UPDATE_TASK,
     payload: {
       id,
       ...props

@@ -1,4 +1,4 @@
-import '../styles/item.css'
+import 'styles/taskBlock.css'
 import 'jquery-ui/themes/base/core.css'
 import 'jquery-ui/themes/base/resizable.css'
 
@@ -6,24 +6,21 @@ import React from 'react'
 import $ from 'jquery'
 import 'jquery-ui/ui/widgets/resizable'
 import 'jquery-ui/ui/widgets/draggable'
-import 'jquery-ui/ui/widgets/sortable'
 
-export default class Item extends React.Component {
+export default class TaskBlock extends React.Component {
   get gridSize () { return 50 }
-  get $el () { return $(`.gantt-item#item-${this.props.id}`) }
+  get $el () { return $(`.gantt-task#task-${this.props.id}`) }
 
   handleResize (ui) {
     let newDuration = ui.size.width / this.gridSize
-    this.props.updateItem(
-      this.props.id,
+    this.props.updateTask(
       { duration: newDuration }
     )
   }
 
   handleDrag (ui) {
     let newStart = ui.position.left / this.gridSize
-    this.props.updateItem(
-      this.props.id,
+    this.props.updateTask(
       { start: newStart }
     )
   }
@@ -60,21 +57,15 @@ export default class Item extends React.Component {
 
   render () {
     return (
-      <div className='gantt-item-container'>
-        <div className='gantt-item-sort-handle'>
-          <span className='center-text'>
-            {this.props.position + 1}
-          </span>
-        </div>
-        <div id={'item-' + this.props.id} className='gantt-item bg-primary text-white'
-              style={this.getStyles()}>
-          <span className='resize-handle left'></span>
-          <span className='center-text'>
-            {this.props.description}
-          </span>
-          <span className='resize-handle right'></span>
-        </div>
-      </div>
+      <tr>
+        <td className='gantt-task-container'>
+          <div id={'task-' + this.props.id} className='gantt-task bg-primary text-white rounded'
+                style={this.getStyles()}>
+            <span className='resize-handle left'></span>
+            <span className='resize-handle right'></span>
+          </div>
+        </td>
+      </tr>
     )
   }
 }

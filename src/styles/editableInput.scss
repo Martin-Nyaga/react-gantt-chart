@@ -1,0 +1,26 @@
+@import "base";
+
+span.editable-input {
+  display: block;
+  min-width: 100%;
+  min-height: 100%;
+
+  span {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.table-sm tr td span.editable-input input {
+  height: $small-table-row-height - 11px;
+  padding: 0px;
+
+  border: none;
+  border-radius: 0px;
+
+  &:focus {
+    border: none;
+    box-shadow: none;
+  }
+}

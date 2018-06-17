@@ -1,0 +1,28 @@
+@import "base";
+
+
+.gantt-task-container {
+  vertical-align: middle !important;
+
+  .gantt-task {
+    height: 20px;
+    cursor: grab;
+
+    .resize-handle {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.1);
+      width: 5px;
+
+      &.left {
+        left: 0px;
+      }
+
+      &.right {
+        right: 0px;
+      }
+    }
+  }
+}

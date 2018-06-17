@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import * as actions from 'actions'
-import Chart from 'components/chart'
+import Chart from 'components/taskTable'
 
 const matchStateToProps = state => {
   return {
@@ -19,9 +19,9 @@ const matchDispatchToProps = dispatch => {
   }
 }
 
-const chartContainer = connect(
+const taskTable = connect(
   matchStateToProps,
   matchDispatchToProps
 )(Chart)
 
-export default chartContainer
+export default taskTable
