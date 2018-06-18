@@ -4,7 +4,6 @@
   width: 100%;
   table-layout: fixed;
   
-
   th, td {
     white-space: nowrap;
   }
@@ -44,10 +43,16 @@
     td:first-child, th:first-child {
       border-left: thin $grey-2 solid;
     }
+    td:last-child, th:last-child {
+      border-right: thin $grey-2 solid;
+    }
 
     &:last-child {
       td:first-child {
         border-left: none;
+      }
+      td:last-child {
+        border-right: none;
       }
     }
   }
