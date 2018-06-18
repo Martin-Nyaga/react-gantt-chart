@@ -1,5 +1,64 @@
+@import 'base';
+
 .task-table {
+  width: 100%;
+  table-layout: fixed;
+  
+
   th, td {
     white-space: nowrap;
+  }
+
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+
+    input {
+      width: 100%;
+      display: inline-block;
+      height: 1.5em;
+      padding: 0px;
+
+      border: none;
+      border-radius: 0px;
+
+      &:focus {
+        border: none;
+        box-shadow: none;
+      }
+    }
+
+    a {
+      text-decoration: initial;
+    }
+
+    &.sort-handle {
+      @include grabbable;
+    }
+  }
+
+  tr {
+    background: white;
+
+    td:first-child, th:first-child {
+      border-left: thin $grey-2 solid;
+    }
+
+    &:last-child {
+      td:first-child {
+        border-left: none;
+      }
+    }
+  }
+
+  tbody tr:not(:last-child) {
+    transition: box-shadow 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
   }
 }

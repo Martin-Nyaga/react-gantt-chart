@@ -8,11 +8,11 @@ import 'jquery-ui/ui/widgets/resizable'
 import 'jquery-ui/ui/widgets/draggable'
 
 export default class TaskBlock extends React.Component {
-  get gridSize () { return 50 }
+  get gridSize () { return this.props.gridSize }
   get $el () { return $(`.gantt-task#task-${this.props.id}`) }
 
   handleResize (ui) {
-    let newDuration = ui.size.width / this.gridSize
+    let newDuration = this.$el.outerWidth() / this.gridSize
     this.props.updateTask(
       { duration: newDuration }
     )
@@ -21,7 +21,7 @@ export default class TaskBlock extends React.Component {
   handleDrag (ui) {
     let newStart = ui.position.left / this.gridSize
     this.props.updateTask(
-      { start: newStart }
+      { start: newStart + 1 }
     )
   }
 
@@ -36,7 +36,10 @@ export default class TaskBlock extends React.Component {
     this.$el.draggable({
       axis: 'x',
       grid: [this.gridSize, 0],
-      stop: (e, ui) => this.handleDrag(ui)
+      stop: (e, ui) => this.handleDrag(ui),
+      scroll: false,
+      refreshPositions: true,
+      snap: '.column'
     })
   }
 
@@ -47,7 +50,7 @@ export default class TaskBlock extends React.Component {
 
   getStyles () {
     let width = (this.props.duration * this.gridSize) + "px"
-    let left = (this.props.start * this.gridSize) + "px"
+    let left = ((this.props.start - 1) * this.gridSize) + "px"
 
     return {
       width: width,

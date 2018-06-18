@@ -9,7 +9,7 @@ export function addTask () {
   return {
     type: ADD_TASK,
     payload: {
-      start: 0,
+      start: 1,
       duration: 4,
       description: 'Task Description'
     }

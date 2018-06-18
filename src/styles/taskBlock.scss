@@ -5,9 +5,14 @@
   vertical-align: middle !important;
   padding-left: 0px !important;
 
+  &:last-child {
+    border-bottom: thin $grey-2 solid;
+  } 
+
   .gantt-task {
+    @include grabbable;
+    top: 0px !important;
     height: 15px;
-    cursor: grab;
     border-radius: 15px;
     box-shadow: 0 1px 5px rgba(10, 10, 100, 0.1);
   }

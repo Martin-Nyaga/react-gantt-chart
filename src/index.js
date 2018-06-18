@@ -6,6 +6,7 @@ import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import 'bootstrap'
+import 'utils/icons'
 
 // Main CSS
 import 'bootstrap/dist/css/bootstrap.min.css'

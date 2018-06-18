@@ -12,9 +12,6 @@ const matchDispatchToProps = dispatch => {
   return {
     updateTask: (id, props) => {
       dispatch(actions.updateTask(id, props))
-    },
-    addTask: () => {
-      dispatch(actions.addTask())
     }
   }
 }

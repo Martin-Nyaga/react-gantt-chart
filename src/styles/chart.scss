@@ -3,10 +3,6 @@
 .chart-container {
   position: relative;
 
-  .chart {
-    min-width: 1000px;
-  }
-
   .background {
     position: absolute;
     z-index: -1;
@@ -22,16 +18,16 @@
     .column {
       display: inline-block;
       height: 100%;
+      position: relative;
 
       .duration-title {
-        display: inline-block;
+        position: absolute;
+        display: block;
+        top: 13px;
         white-space: nowrap;
-        height: $small-table-row-height;
         font-weight: bold;
-        line-height: $small-table-row-height - 9;
-        padding: 5px;
         width: 100%;
-        text-align: center;
+        vertical-align: bottom;
       }
     }
   }
